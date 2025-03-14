@@ -1,60 +1,58 @@
-Bookmark Navigator
+# Bookmark Navigator
 
-License: https://img.shields.io/github/license/username/bookmark-navigator
-Size: https://img.shields.io/github/size/username/bookmark-navigator/dist/bookmark-navigator.zip
-PHP: https://img.shields.io/badge/PHP-7.4+-blue
-MySQL: https://img.shields.io/badge/MySQL-5.6+-orange
+![License](https://img.shields.io/github/license/username/bookmark-navigator) ![Size](https://img.shields.io/github/size/username/bookmark-navigator/dist/bookmark-navigator.zip) ![PHP](https://img.shields.io/badge/PHP-7.4+-blue) ![MySQL](https://img.shields.io/badge/MySQL-5.6+-orange)
 
-Bookmark Navigator 是一个轻量级、优雅的个人书签管理工具，灵感来源于 OneNav，专注于简单易用和高效部署。项目源代码不到 100KB，仅依赖 PHP 和 MySQL，无需复杂环境即可在虚拟主机上运行。支持明暗主题、拖拽排序、樱花特效以及高级图标抓取，让你的书签管理既实用又美观。
+**Bookmark Navigator** 是一个轻量级、优雅的个人书签管理工具，灵感来源于 OneNav，专注于简单易用和高效部署。项目源代码不到 100KB，仅依赖 PHP 和 MySQL，无需复杂环境即可在虚拟主机上运行。支持明暗主题、拖拽排序、樱花特效以及高级图标抓取，让你的书签管理既实用又美观。
 
 ## 亮点
 
-- 超轻量级：源代码不到 100KB，占用空间小，加载快。
-- 简单部署：只需 PHP 和 MySQL，无需额外依赖，虚拟主机即可运行。
-- 灵感来源 OneNav：继承了 OneNav 的简洁设计，同时优化了功能和用户体验。
-- 高级图标抓取：自动从网页提取最佳图标（支持 favicon.ico、HTML 链接、Manifest 等），类似 Favicon Finder。
-- 拖拽排序：支持书签拖拽重新排序，保存位置到数据库。
-- 明暗主题：内置炫酷的渐变背景，支持一键切换明暗模式。
-- 樱花特效：动态樱花飘落效果，提升视觉体验。
-- 密码保护：简单登录机制，确保书签隐私。
-- 响应式设计：适配桌面和移动端，随时随地管理书签。
-- 搜索功能：快速搜索书签名称、URL、分类或备注。
+- **超轻量级**：源代码不到 100KB，占用空间小，加载快。
+- **简单部署**：只需 PHP 和 MySQL，无需额外依赖，虚拟主机即可运行。
+- **灵感来源 OneNav**：继承了 OneNav 的简洁设计，同时优化了功能和用户体验。
+- **高级图标抓取**：自动从网页提取最佳图标（支持 `favicon.ico`、HTML 链接、Manifest 等），类似 Favicon Finder。
+- **拖拽排序**：支持书签拖拽重新排序，保存位置到数据库。
+- **明暗主题**：内置炫酷的渐变背景，支持一键切换明暗模式。
+- **樱花特效**：动态樱花飘落效果，提升视觉体验。
+- **密码保护**：简单登录机制，确保书签隐私。
+- **响应式设计**：适配桌面和移动端，随时随地管理书签。
+- **搜索功能**：快速搜索书签名称、URL、分类或备注。
 
 ## 主要功能
 
-1. 书签管理：
+1. **书签管理**：
    - 添加、编辑、删除书签。
    - 支持分类管理（新建、修改、删除分类）。
    - 可添加备注，方便记录额外信息。
 
-2. 图标自动抓取：
-   - 优先检查默认 favicon.ico。
-   - 解析 HTML 中的 <link> 标签（如 rel="icon" 或 apple-touch-icon）。
-   - 支持 Web App Manifest 和 Microsoft browserconfig.xml。
-   - 使用 CORS 代理（如 api.allorigins.win）确保跨域抓取成功。
+2. **图标自动抓取**：
+   - 优先检查默认 `favicon.ico`。
+   - 解析 HTML 中的 `<link>` 标签（如 `rel="icon"` 或 `apple-touch-icon`）。
+   - 支持 Web App Manifest 和 Microsoft `browserconfig.xml`。
+   - 使用 CORS 代理（如 `api.allorigins.win`）确保跨域抓取成功。
    - 回退到 Google FaviconV2 服务。
 
-3. 用户体验：
+3. **用户体验**：
    - 拖拽排序书签，实时保存顺序。
    - 右键或长按书签显示编辑/删除选项。
    - 动态调整书签文本大小，确保显示完整。
 
-4. 视觉设计：
+4. **视觉设计**：
    - 渐变背景（明暗主题可选）。
    - 半透明容器和阴影效果。
    - 樱花飘落动画，提升趣味性。
 
 ## 部署要求
 
-- PHP: 7.4 或更高版本（推荐 8.x）。
-- MySQL: 5.6 或更高版本。
-- Web 服务器: 任意支持 PHP 的服务器（如 Apache、Nginx）。
-- 空间: 至少 1MB（包括源代码和数据库）。
+- **PHP**: 7.4 或更高版本（推荐 8.x）。
+- **MySQL**: 5.6 或更高版本。
+- **Web 服务器**: 任意支持 PHP 的服务器（如 Apache、Nginx）。
+- **空间**: 至少 1MB（包括源代码和数据库）。
 
 ## 部署教程
 
 ### 1. 下载源代码
 从 GitHub 仓库下载项目 ZIP 文件，或使用 Git 克隆：
+```bash
 git clone https://github.com/username/bookmark-navigator.git
 
 ### 2. 配置数据库
