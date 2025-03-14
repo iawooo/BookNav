@@ -17,7 +17,14 @@ try {
 }
 
 session_start();
-if (!isset($_SESSION['logged_in']) && (!isset($_COOKIE['logged_in']) || $_COOKIE['logged_in'] !== md5($site_password))) {
+
+// 如果密码为空，自动登录
+if (empty($site_password)) {
+    $_SESSION['logged_in'] = true;
+    setcookie('logged_in', 'auto_login', time() + 30 * 24 * 3600, '/');
+}
+// 如果没有登录并且没有有效的cookie
+else if (!isset($_SESSION['logged_in']) && (!isset($_COOKIE['logged_in']) || $_COOKIE['logged_in'] !== md5($site_password))) {
     if (isset($_POST['password']) && $_POST['password'] === $site_password) {
         $_SESSION['logged_in'] = true;
         setcookie('logged_in', md5($site_password), time() + 30 * 24 * 3600, '/');
