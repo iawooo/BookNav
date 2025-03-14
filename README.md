@@ -51,27 +51,23 @@
 ## 部署教程
 
 ### 1. 下载源代码
-从 GitHub 仓库下载项目 ZIP 文件，或使用 Git 克隆：
-```bash
-git clone https://github.com/username/bookmark-navigator.git
 
-### 2. 配置数据库
-1. 创建数据库：
-   - 登录 MySQL（通过 phpMyAdmin 或命令行）。
-   - 创建一个新数据库，例如：
-     CREATE DATABASE bookmark_navigator CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+2. 配置数据库
+创建数据库
+登录 MySQL（通过 phpMyAdmin 或命令行）。
+创建一个新数据库
 
 2. 导入表结构：
    - 在 MySQL 中运行以下 SQL 命令，创建 bookmarks 表：
-     CREATE TABLE bookmarks (
-         id INT AUTO_INCREMENT PRIMARY KEY,
-         NAME VARCHAR(255) NOT NULL,
-         url VARCHAR(255) NOT NULL,
-         category VARCHAR(100),
-         note TEXT,
-         icon VARCHAR(255),
-         POSITION INT DEFAULT 0
-     );
+CREATE TABLE bookmarks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    NAME VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    category VARCHAR(100),
+    note TEXT,
+    icon VARCHAR(255),
+    POSITION INT DEFAULT 0
+);
 
 3. 修改配置文件：
    - 打开 config.php，编辑以下数据库连接信息：
@@ -86,26 +82,23 @@ git clone https://github.com/username/bookmark-navigator.git
      define('FAVICON', 'images/favicon.ico');
 
 ### 3. 上传到虚拟主机
-1. 准备文件：
-   - 确保项目文件夹包含以下文件：
-     bookmark-navigator/
-     ├── add.php
-     ├── config.php
-     ├── delete.php
-     ├── delete_category.php
-     ├── edit.php
-     ├── edit_category.php
-     ├── index.php
-     ├── login.php
-     ├── script.js
-     ├── style.css
-     ├── images/
-     │   ├── default-bookmark.png
-     │   └── favicon.ico
-
+public_html/
+  ├── add.php
+  ├── config.php
+  ├── delete.php
+  ├── delete_category.php
+  ├── edit.php
+  ├── edit_category.php
+  ├── index.php
+  ├── login.php
+  ├── script.js
+  ├── style.css
+  ├── images/
+  │   ├── default-bookmark.png
+  │   └── favicon.ico
 2. 上传：
    - 使用 FTP 工具（如 FileZilla）将整个文件夹上传到虚拟主机的 public_html 或指定目录。
-   - 例如，上传到 /public_html/bookmarks/。
+   - 例如，上传到 /public_html/
 
 3. 设置权限（可选）：
    - 确保 config.php 和 images/ 文件夹可读（权限通常为 644 或 755）。
