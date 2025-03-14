@@ -216,9 +216,9 @@ h1 {
 }
 
 .bookmark {
-    width: 160px;
-    height: 160px;
-    padding: 15px;
+    width: 107px;
+    height: 107px;
+    padding: 10px;
     background: var(--bookmark-bg);
     border-radius: 10px;
     box-shadow: 0 0 15px var(--shadow-color);
@@ -231,6 +231,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden; /* 防止内容溢出书签边界 */
 }
 
 .bookmark:hover {
@@ -252,17 +253,20 @@ h1 {
 .bookmark-text {
     text-align: center;
     display: inline-block;
-    padding: 8px;
-    background: rgba(0, 0, 0, 0.75);
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
-    max-width: 90%;
+    max-width: 85%;
     z-index: 2;
+    box-sizing: border-box;
+    overflow: hidden; /* 防止文本溢出透明框 */
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
 }
 
 .name {
-    font-size: 1.1em;
+    font-size: 0.73em;
     font-weight: bold;
-    margin: 5px 0;
+    margin: 3px 0; /* 减小间距以适应小尺寸 */
     word-wrap: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
@@ -270,11 +274,14 @@ h1 {
     text-shadow: 0 0 5px #000000;
     display: block;
     color: #ffffff;
+    overflow: hidden; /* 防止溢出 */
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+    white-space: nowrap; /* 单行显示 */
 }
 
 .note {
-    font-size: 0.9em;
-    margin: 5px 0;
+    font-size: 0.6em;
+    margin: 3px 0; /* 减小间距 */
     word-wrap: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
@@ -282,6 +289,9 @@ h1 {
     text-shadow: 0 0 5px #000000;
     display: block;
     color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* 单行显示 */
 }
 
 .actions {
@@ -306,11 +316,11 @@ h1 {
 .actions a {
     flex: 1;
     margin: 0;
-    font-size: 1em;
+    font-size: 0.67em;
     color: #00ffcc;
     text-decoration: none;
     text-align: center;
-    padding: 10px;
+    padding: 7px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -451,11 +461,6 @@ select option {
         gap: 5px;
     }
 
-    #search {
-        width: 50%;
-        padding: 8px;
-    }
-
     .btn.search-btn {
         padding: 8px 10px;
         font-size: 0.8em;
@@ -471,12 +476,28 @@ select option {
     }
 
     .bookmark {
-        width: 120px;
-        height: 120px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .bookmark-text {
+        padding: 3px;
+        max-width: 80%;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .name {
+        font-size: 0.6em; /* 在手机端稍微减小初始字体 */
+        margin: 2px 0;
+    }
+
+    .note {
+        font-size: 0.5em; /* 在手机端稍微减小初始字体 */
+        margin: 2px 0;
     }
 
     .actions a {
-        font-size: 0.8em;
-        padding: 8px;
+        font-size: 0.53em;
+        padding: 5px;
     }
 }
