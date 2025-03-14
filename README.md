@@ -53,24 +53,26 @@
 ### 1. 下载源代码
 
 2. 配置数据库
-创建数据库
+#### 创建数据库
 登录 MySQL（通过 phpMyAdmin 或命令行）。
 创建一个新数据库
 
-2. 导入表结构：
-   - 在 MySQL 中运行以下 SQL 命令，创建 bookmarks 表：
-CREATE TABLE bookmarks (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    NAME VARCHAR(255) NOT NULL,
-    url VARCHAR(255) NOT NULL,
-    category VARCHAR(100),
-    note TEXT,
-    icon VARCHAR(255),
-    POSITION INT DEFAULT 0
-);
+#### 导入表结构
+- 在 MySQL 中运行以下 SQL 命令，创建 `bookmarks` 表：
+  ```
+  CREATE TABLE bookmarks (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      NAME VARCHAR(255) NOT NULL,
+      url VARCHAR(255) NOT NULL,
+      category VARCHAR(100),
+      note TEXT,
+      icon VARCHAR(255),
+      POSITION INT DEFAULT 0
+  );
 
 3. 修改配置文件：
-   - 打开 config.php，编辑以下数据库连接信息：
+  - 打开 config.php，编辑以下数据库连接信息：
+    ```
      $db_host = 'localhost';           // 数据库主机，通常为 localhost
      $db_name = 'bookmark_navigator';  // 刚创建的数据库名
      $db_user = 'your_username';       // MySQL 用户名
