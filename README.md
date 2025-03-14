@@ -77,7 +77,7 @@
      $db_name = 'bookmark_navigator';  // 刚创建的数据库名
      $db_user = 'your_username';       // MySQL 用户名
      $db_pass = 'your_password';       // MySQL 密码
-   - 设置站点密码（用于登录保护）：
+   - 设置站点密码（留空则直接进入主页）：
  ```
 $site_password = 'your_custom_password'; // 自定义密码
 ```
