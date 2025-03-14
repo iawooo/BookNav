@@ -1,8 +1,8 @@
-# Bookmark Navigator
+# 书签导航
 
 ![License](https://img.shields.io/github/license/username/bookmark-navigator) ![Size](https://img.shields.io/github/size/username/bookmark-navigator/dist/bookmark-navigator.zip) ![PHP](https://img.shields.io/badge/PHP-7.4+-blue) ![MySQL](https://img.shields.io/badge/MySQL-5.6+-orange)
 
-**Bookmark Navigator** 是一个轻量级、优雅的个人书签管理工具，灵感来源于 OneNav，专注于简单易用和高效部署。项目源代码不到 100KB，仅依赖 PHP 和 MySQL，无需复杂环境即可在虚拟主机上运行。支持明暗主题、拖拽排序、樱花特效以及高级图标抓取，让你的书签管理既实用又美观。
+**书签导航** 是一个轻量级、优雅的个人书签管理工具，灵感来源于 OneNav，专注于简单易用和高效部署。项目源代码不到 80KB，仅依赖 PHP 和 MySQL，无需复杂环境即可在虚拟主机上运行。支持明暗主题、拖拽排序、樱花特效以及高级图标抓取，让你的书签管理既实用又美观。
 
 ## 亮点
 
@@ -78,12 +78,15 @@
      $db_user = 'your_username';       // MySQL 用户名
      $db_pass = 'your_password';       // MySQL 密码
    - 设置站点密码（用于登录保护）：
+   -  ```
      $site_password = 'your_custom_password'; // 自定义密码
    - 确认默认图标和站点 Favicon 路径（默认无需修改）：
+   -  ```
      define('DEFAULT_ICON', 'images/default-bookmark.png');
      define('FAVICON', 'images/favicon.ico');
 
 ### 3. 上传到虚拟主机
+```
 public_html/
   ├── add.php
   ├── config.php
@@ -98,6 +101,7 @@ public_html/
   ├── images/
   │   ├── default-bookmark.png
   │   └── favicon.ico
+```
 2. 上传：
    - 使用 FTP 工具（如 FileZilla）将整个文件夹上传到虚拟主机的 public_html 或指定目录。
    - 例如，上传到 /public_html/
@@ -107,7 +111,7 @@ public_html/
 
 ### 4. 访问站点
 - 在浏览器中访问：
-  http://yourdomain.com/bookmarks/
+  http://yourdomain.com/
 - 输入你在 config.php 中设置的密码登录。
 - 登录后即可开始添加和管理书签！
 
@@ -143,8 +147,7 @@ public_html/
   - 如果抓取失败，会使用默认图标 images/default-bookmark.png。
 
 - 虚拟主机限制：
-  - 确保主机支持 PHP session 和 curl（尽管当前代码已改为客户端抓取，但未来扩展可能需要）。
-
+  - 确保主机支持 PHP session
 ## 贡献
 
 欢迎提交 Issues 或 Pull Requests！如果有新功能建议或 Bug 反馈，请随时联系。
