@@ -1,10 +1,10 @@
 <?php
-$db_host = 'localhost';
-$db_name = 'raybee9_dh';
-$db_user = 'raybee9_dh';
-$db_pass = 'qq965868345';
+$db_host = 'localhost';           // 数据库主机，通常为 localhost
+$db_name = 'bookmark_navigator';  // 刚创建的数据库名
+$db_user = 'your_username';       // MySQL 用户名
+$db_pass = 'your_password';       // MySQL 密码
 
-$site_password = 'qq965868345';
+$site_password = 'your_custom_password'; // 自定义密码
 
 define('DEFAULT_ICON', 'images/default-bookmark.png'); // 相对路径
 define('FAVICON', 'images/favicon.ico');
