@@ -99,14 +99,15 @@ function adjustTextDisplay(bookmark) {
     const name = bookmark.querySelector('.name');
     const note = bookmark.querySelector('.note');
     
-    // 确保书签文本容器始终有一个半透明背景
+    // 设置文本容器样式
     if (textContainer) {
-        textContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
-        textContainer.style.padding = '8px';
+        textContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        textContainer.style.padding = window.innerWidth <= 600 ? '3px' : '5px';
         textContainer.style.borderRadius = '5px';
+        textContainer.style.maxWidth = window.innerWidth <= 600 ? '80%' : '85%';
     }
     
-    // 设置文本颜色为白色，确保在任何背景上都可见
+    // 设置文本颜色
     if (name) {
         name.style.color = '#ffffff';
         name.style.textShadow = '0 0 3px rgba(0, 0, 0, 0.8)';
@@ -121,19 +122,19 @@ function adjustTextDisplay(bookmark) {
 
     // 动态调整字体大小以适应容器
     if (name) {
-        let fontSize = 1.1;
+        let fontSize = window.innerWidth <= 600 ? 0.6 : 0.73; // 手机端初始更小
         name.style.fontSize = fontSize + 'em';
-        while (name.scrollHeight > bookmark.offsetHeight * 0.6 && fontSize > 0.5) {
-            fontSize -= 0.1;
+        while (name.scrollWidth > textContainer.offsetWidth && fontSize > 0.33) {
+            fontSize -= 0.07;
             name.style.fontSize = fontSize + 'em';
         }
     }
     
     if (note) {
-        let fontSize = 0.9;
+        let fontSize = window.innerWidth <= 600 ? 0.5 : 0.6; // 手机端初始更小
         note.style.fontSize = fontSize + 'em';
-        while (note.scrollHeight > bookmark.offsetHeight * 0.4 && fontSize > 0.4) {
-            fontSize -= 0.1;
+        while (note.scrollWidth > textContainer.offsetWidth && fontSize > 0.27) {
+            fontSize -= 0.07;
             note.style.fontSize = fontSize + 'em';
         }
     }
