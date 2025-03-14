@@ -78,13 +78,14 @@
      $db_user = 'your_username';       // MySQL 用户名
      $db_pass = 'your_password';       // MySQL 密码
    - 设置站点密码（用于登录保护）：
-   -  ```
-     $site_password = 'your_custom_password'; // 自定义密码
+ ```
+$site_password = 'your_custom_password'; // 自定义密码
+```
    - 确认默认图标和站点 Favicon 路径（默认无需修改）：
-   -  ```
+```
      define('DEFAULT_ICON', 'images/default-bookmark.png');
      define('FAVICON', 'images/favicon.ico');
-
+```
 ### 3. 上传到虚拟主机
 ```
 public_html/
