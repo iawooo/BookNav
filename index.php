@@ -27,14 +27,18 @@ if ($search) {
 $stmt->execute();
 $bookmarks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// 处理拖拽排序
+// 第二段集成：处理拖拽排序
 if (isset($_POST['order'])) {
     $order = json_decode($_POST['order'], true);
-    foreach ($order as $pos => $id) {
-        $stmt = $pdo->prepare("UPDATE bookmarks SET position = ? WHERE id = ?");
-        $stmt->execute([$pos, $id]);
+    if (is_array($order)) {
+        foreach ($order as $id => $data) {
+            $stmt = $pdo->prepare("UPDATE bookmarks SET position = ?, category = ? WHERE id = ?");
+            $stmt->execute([(int)$data['position'], $data['category'], (int)$id]);
+        }
+        exit('success');
+    } else {
+        exit('invalid order data');
     }
-    exit('success');
 }
 ?>
 
@@ -82,7 +86,6 @@ if (isset($_POST['order'])) {
                 echo '<h2>';
                 echo ($bookmark['category'] ?: '未分类');
                 echo ' <a href="add.php?category=' . urlencode($bookmark['category'] ?: '') . '" class="btn add-btn small">+</a>';
-                // 为“未分类”也添加编辑和删除按钮
                 echo ' <a href="edit_category.php?category=' . urlencode($bookmark['category'] ?: '') . '" class="btn edit-btn small">✏️</a>';
                 echo ' <a href="delete_category.php?category=' . urlencode($bookmark['category'] ?: '') . '" class="btn delete-btn small" onclick="return confirm(\'确定删除分类 [' . htmlspecialchars($bookmark['category'] ?: '未分类') . '] 及其所有书签?\')">🗑️</a>';
                 echo '</h2>';
