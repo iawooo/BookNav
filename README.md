@@ -62,6 +62,7 @@ public_html/
   ├── edit.php
   ├── edit_category.php
   ├── index.php
+  ├── install.php
   ├── login.php
   ├── script.js
   ├── style.css
