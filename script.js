@@ -99,35 +99,33 @@ function adjustTextDisplay(bookmark) {
     const name = bookmark.querySelector('.name');
     const note = bookmark.querySelector('.note');
     
-    // 设置文本容器样式，确保布满书签
     if (textContainer) {
         textContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
         textContainer.style.padding = window.innerWidth <= 600 ? '3px' : '5px';
         textContainer.style.borderRadius = '5px';
-        textContainer.style.width = '100%'; // 确保宽度布满
-        textContainer.style.height = '100%'; // 确保高度布满
-        textContainer.style.maxWidth = '100%'; // 覆盖 CSS 中的 max-width
+        textContainer.style.width = '100%';
+        textContainer.style.height = '100%';
+        textContainer.style.maxWidth = '100%';
         textContainer.style.position = 'absolute';
         textContainer.style.top = '0';
         textContainer.style.left = '0';
-        textContainer.style.display = 'flex'; // 确保 flex 布局
+        textContainer.style.display = 'flex';
         textContainer.style.flexDirection = 'column';
         textContainer.style.justifyContent = 'space-between';
         textContainer.style.boxSizing = 'border-box';
     }
     
-    // 设置名称样式
     if (name) {
         name.style.color = '#ffffff';
         name.style.textShadow = '0 0 3px rgba(0, 0, 0, 0.8)';
-        name.style.display = '-webkit-box'; // 支持多行限制
+        name.style.display = '-webkit-box';
         name.style.webkitBoxOrient = 'vertical';
-        name.style.webkitLineClamp = '2'; // 限制为两行
+        name.style.webkitLineClamp = '2';
         name.style.overflow = 'hidden';
         name.style.textOverflow = 'ellipsis';
-        name.style.height = '40%'; // 占 40%
+        name.style.height = '40%';
         name.style.paddingTop = window.innerWidth <= 600 ? '3px' : '5px';
-        let fontSize = window.innerWidth <= 600 ? 0.6 : 0.73; // 手机端初始更小
+        let fontSize = window.innerWidth <= 600 ? 0.6 : 0.73;
         name.style.fontSize = fontSize + 'em';
         while (name.scrollWidth > textContainer.offsetWidth && fontSize > 0.33) {
             fontSize -= 0.07;
@@ -135,18 +133,17 @@ function adjustTextDisplay(bookmark) {
         }
     }
     
-    // 设置备注样式，确保显示
     if (note) {
         note.style.color = '#ffffff';
         note.style.textShadow = '0 0 3px rgba(0, 0, 0, 0.8)';
-        note.style.display = '-webkit-box'; // 支持多行限制
+        note.style.display = '-webkit-box';
         note.style.webkitBoxOrient = 'vertical';
-        note.style.webkitLineClamp = '3'; // 限制为三行
+        note.style.webkitLineClamp = '3';
         note.style.overflow = 'hidden';
         note.style.textOverflow = 'ellipsis';
-        note.style.height = '60%'; // 占 60%
+        note.style.height = '60%';
         note.style.paddingBottom = window.innerWidth <= 600 ? '3px' : '5px';
-        let fontSize = window.innerWidth <= 600 ? 0.5 : 0.6; // 手机端初始更小
+        let fontSize = window.innerWidth <= 600 ? 0.5 : 0.6;
         note.style.fontSize = fontSize + 'em';
         while (note.scrollWidth > textContainer.offsetWidth && fontSize > 0.27) {
             fontSize -= 0.07;
@@ -155,10 +152,14 @@ function adjustTextDisplay(bookmark) {
     }
 }
 
+// 第一段集成：保存排序
 function saveOrder() {
     const order = {};
-    document.querySelectorAll('.bookmark').forEach((bookmark, index) => {
-        order[index] = bookmark.dataset.id;
+    document.querySelectorAll('.bookmark-container').forEach(container => {
+        const category = container.parentElement.id || 'uncategorized';
+        container.querySelectorAll('.bookmark').forEach((bookmark, index) => {
+            order[bookmark.dataset.id] = { position: index, category: decodeURIComponent(category) };
+        });
     });
 
     fetch('index.php', {
