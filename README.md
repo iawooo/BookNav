@@ -52,41 +52,7 @@
 
 ### 1. 下载源代码
 
-2. 配置数据库
-#### 创建数据库
-登录 MySQL（通过 phpMyAdmin 或命令行）。
-创建一个新数据库
-
-#### 导入表结构
-- 在 MySQL 中运行以下 SQL 命令，创建 `bookmarks` 表：
-  ```
-  CREATE TABLE bookmarks (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      NAME VARCHAR(255) NOT NULL,
-      url VARCHAR(255) NOT NULL,
-      category VARCHAR(100),
-      note TEXT,
-      icon VARCHAR(255),
-      POSITION INT DEFAULT 0
-  );
-
-3. 修改配置文件：
-  - 打开 config.php，编辑以下数据库连接信息：
-    ```
-     $db_host = 'localhost';           // 数据库主机，通常为 localhost
-     $db_name = 'bookmark_navigator';  // 刚创建的数据库名
-     $db_user = 'your_username';       // MySQL 用户名
-     $db_pass = 'your_password';       // MySQL 密码
-   - 设置站点密码（留空则直接进入主页）：
- ```
-$site_password = 'your_custom_password'; // 自定义密码
-```
-   - 确认默认图标和站点 Favicon 路径（默认无需修改）：
-```
-     define('DEFAULT_ICON', 'images/default-bookmark.png');
-     define('FAVICON', 'images/favicon.ico');
-```
-### 3. 上传到虚拟主机
+### 2. 上传到虚拟主机
 ```
 public_html/
   ├── add.php
@@ -110,10 +76,10 @@ public_html/
 3. 设置权限（可选）：
    - 确保 config.php 和 images/ 文件夹可读（权限通常为 644 或 755）。
 
-### 4. 访问站点
+### 3. 访问站点
 - 在浏览器中访问：
   http://yourdomain.com/
-- 输入你在 config.php 中设置的密码登录。
+- 填写配置数据库信息，绑定数据库
 - 登录后即可开始添加和管理书签！
 
 ## 使用说明
@@ -123,7 +89,7 @@ public_html/
    - 图标字段留空会自动抓取网页图标。
 
 2. 编辑/删除：
-   - 右键或长按书签，点击“编辑”或“删除”。
+   - 右键（电脑）或长按（手机）书签，点击“编辑”或“删除”。
 
 3. 分类管理：
    - 在分类标题旁点击“✏️”编辑，或“🗑️”删除整个分类。
