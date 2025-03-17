@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST">
             <label>数据库主机:</label>
             <input type="text" name="db_host" value="<?php echo htmlspecialchars($db_host); ?>" required>
-            <small>如 sql123.epizy.com（查看主机提供商控制面板）</small>
+            <small>如 localhost（查看主机提供商控制面板）</small>
             <label>数据库端口（默认 3306）:</label>
             <input type="text" name="db_port" value="<?php echo htmlspecialchars($db_port); ?>" placeholder="3306">
             <small>通常为 3306，除非主机提供商指定其他端口</small>
