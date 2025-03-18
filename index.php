@@ -108,13 +108,14 @@ if (isset($_POST['order'])) {
         // 再处理有分类书签
         foreach ($bookmarks as $bookmark) {
             if (!empty($bookmark['category']) && $bookmark['category'] !== $current_category) {
-                if ($current_category !== null) echo '</div></div>';
+                if ($current_category !== null) echo '</div></div></div>'; // 关闭上一个 category-wrapper
+                echo '<div class="category-wrapper">';
                 echo '<div class="category" id="' . urlencode($bookmark['category']) . '">';
                 echo '<h2>';
                 echo htmlspecialchars($bookmark['category']);
                 echo ' <a href="add.php?category=' . urlencode($bookmark['category']) . '" class="btn add-btn small">+</a>';
-                echo ' <a href="edit_category.php?category=' . urlencode($bookmark['category']) . '" class="btn edit-btn small">✏️</a>';
-                echo ' <a href="delete_category.php?category=' . urlencode($bookmark['category']) . '" class="btn delete-btn small" onclick="return confirm(\'确定删除分类 [' . htmlspecialchars($bookmark['category']) . '] 及其所有书签?\')">🗑️</a>';
+                echo ' <a href="edit_category.php?category=' . urlencode($bookmark['category']) . '" class="btn edit-btn small">&#9998;</a>';
+                echo ' <a href="delete_category.php?category=' . urlencode($bookmark['category']) . '" class="btn delete-btn small" onclick="return confirm(\'确定删除分类 [' . htmlspecialchars($bookmark['category']) . '] 及其所有书签?\')">&#128465;</a>';
                 echo '</h2>';
                 echo '<div class="bookmark-container">';
                 $current_category = $bookmark['category'];
@@ -137,7 +138,7 @@ if (isset($_POST['order'])) {
                 echo '</div>';
             }
         }
-        if ($current_category !== null) echo '</div></div>';
+        if ($current_category !== null) echo '</div></div></div>'; // 关闭最后一个 category-wrapper
         ?>
     </div>
     <canvas id="sakura"></canvas>
