@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/github/license/username/bookmark-navigator) ![Size](https://img.shields.io/github/size/username/bookmark-navigator/dist/bookmark-navigator.zip) ![PHP](https://img.shields.io/badge/PHP-7.4+-blue) ![MySQL](https://img.shields.io/badge/MySQL-5.6+-orange)
 
-**书签导航** 是一个轻量级、优雅的个人书签管理工具，灵感来源于 OneNav，专注于简单易用和高效部署。项目源代码不到 80KB，仅依赖 PHP 和 MySQL，无需复杂环境即可在虚拟主机上运行。支持明暗主题、拖拽排序、樱花特效以及高级图标抓取，让你的书签管理既实用又美观。
+**书签导航** 是一个轻量级、优雅的个人书签管理工具，支持集中式管理书签，完美解决跨设备、跨平台、跨浏览器的同步与访问难题，实现一处部署、随处访问，灵感来源于 OneNav，专注于简单易用和高效部署。项目源代码不到 100KB，仅依赖 PHP 和 MySQL，无需复杂环境即可在虚拟主机上运行。支持明暗主题、拖拽排序、樱花特效以及高级图标抓取，让你的书签管理既实用又美观。
 
 ## 亮点
 
