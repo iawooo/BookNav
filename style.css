@@ -194,11 +194,18 @@ h1 {
     box-shadow: 0 0 15px #00ffcc;
 }
 
-/* 分类 */
-.category {
+/* 新增分类包裹器 */
+.category-wrapper {
+    width: 100%;
+    display: block;
     margin-bottom: 30px;
-    display: block; /* 确保每个分类独占一行 */
-    clear: both;    /* 清除浮动，确保不与其他分类并排 */
+}
+
+/* 更新分类样式 */
+.category {
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
 }
 
 .category h2 {
