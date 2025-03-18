@@ -197,6 +197,8 @@ h1 {
 /* 分类 */
 .category {
     margin-bottom: 30px;
+    display: block; /* 确保每个分类独占一行 */
+    clear: both;    /* 清除浮动，确保不与其他分类并排 */
 }
 
 .category h2 {
@@ -213,6 +215,8 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    width: 100%;
+    padding-bottom: 20px; /* 添加底部间距 */
 }
 
 .bookmark {
@@ -453,6 +457,14 @@ select option {
 
 [data-theme="light"] .error-message {
     text-shadow: none;
+}
+
+/* 添加空分类时的提示样式 */
+.category p {
+    color: var(--text-color);
+    font-size: 1em;
+    margin: 10px 0;
+    opacity: 0.7;
 }
 
 /* 樱花特效 Canvas */
