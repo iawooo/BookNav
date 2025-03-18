@@ -1,0 +1,590 @@
+/* CSS 变量定义明暗主题 */
+:root {
+    --bg-color: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --container-bg: rgba(0, 0, 0, 0.7);
+    --text-color: #e0e0e0;
+    --shadow-color: rgba(0, 255, 255, 0.3);
+    --bookmark-bg: rgba(255, 255, 255, 0.05);
+    --input-bg: rgba(255, 255, 255, 0.1);
+    --input-text-color: #ffffff;
+    --placeholder-color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="light"] {
+    --bg-color: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    --container-bg: rgba(255, 255, 255, 0.9);
+    --text-color: #333333;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --bookmark-bg: rgba(0, 0, 0, 0.05);
+    --input-bg: rgba(0, 0, 0, 0.1);
+    --input-text-color: #333333;
+    --placeholder-color: rgba(0, 0, 0, 0.7);
+}
+
+/* 全局样式 */
+body {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--container-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px var(--shadow-color);
+    backdrop-filter: blur(5px);
+}
+
+/* 标题和切换主题 */
+.header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.title-wrapper {
+    flex: 1;
+    text-align: center;
+}
+
+.header-top .search-btn {
+    margin-left: auto;
+}
+
+/* 标题 */
+h1 {
+    color: var(--text-color);
+    font-size: 2.5em;
+    margin: 0;
+}
+
+/* 搜索栏 */
+.search-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#search {
+    padding: 10px;
+    width: 60%;
+    border: 2px solid #ff007a;
+    border-radius: 25px;
+    background: var(--input-bg);
+    color: var(--input-text-color);
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#search::placeholder {
+    color: var(--placeholder-color);
+}
+
+#search:focus {
+    border-color: #00ffcc;
+}
+
+/* 按钮通用样式 */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.btn.small {
+    padding: 8px;
+    font-size: 0.9em;
+    min-width: 32px;
+}
+
+/* 具体按钮样式 */
+.search-btn {
+    background: linear-gradient(45deg, #ff007a, #ff00cc);
+    box-shadow: 0 0 15px rgba(255, 0, 122, 0.5);
+}
+
+.search-btn:hover {
+    background: linear-gradient(45deg, #ff00cc, #ff007a);
+}
+
+.add-btn {
+    background: linear-gradient(45deg, #00ffcc, #00ccff);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+.add-btn:hover {
+    background: linear-gradient(45deg, #00ccff, #00ffcc);
+}
+
+.edit-btn {
+    background: linear-gradient(45deg, #ffcc00, #ff9900);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+}
+
+.edit-btn:hover {
+    background: linear-gradient(45deg, #ff9900, #ffcc00);
+}
+
+.delete-btn {
+    background: linear-gradient(45deg, #ff3333, #ff6666);
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+}
+
+.delete-btn:hover {
+    background: linear-gradient(45deg, #ff6666, #ff3333);
+}
+
+.cancel-btn {
+    background: linear-gradient(45deg, #ff3333, #ff6666);
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+}
+
+.cancel-btn:hover {
+    background: linear-gradient(45deg, #ff6666, #ff3333);
+}
+
+.save-btn {
+    background: linear-gradient(45deg, #00ffcc, #00ccff);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+.save-btn:hover {
+    background: linear-gradient(45deg, #00ccff, #00ffcc);
+}
+
+/* 分类导航 */
+.category-nav {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.category-nav a {
+    padding: 8px 16px;
+    background: var(--input-bg);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all 0.3s;
+    border: 1px solid #00ffcc;
+}
+
+.category-nav a:hover, .category-nav a.active {
+    background: #00ffcc;
+    color: #1a1a2e;
+    box-shadow: 0 0 15px #00ffcc;
+}
+
+/* 分类 */
+.category {
+    margin-bottom: 30px;
+}
+
+.category h2 {
+    color: var(--text-color);
+    font-size: 1.5em;
+    margin: 0 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 书签容器 */
+.bookmark-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.bookmark {
+    width: 107px;
+    height: 107px;
+    padding: 10px;
+    background: var(--bookmark-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 15px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    border: 1px solid #00ffcc;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.bookmark:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px var(--shadow-color);
+}
+
+.bookmark a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.bookmark-text {
+    text-align: center;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    z-index: 2;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2em; /* 名称和备注间距为一行高度 */
+}
+
+.name {
+    font-size: 0.73em;
+    font-weight: bold;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    transition: font-size 0.2s;
+    text-shadow: 0 0 5px #000000;
+    color: #ffffff;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    padding-top: 5px;
+    line-height: 1.2em;
+    max-height: 2.4em; /* 2 行高度 */
+}
+
+.note {
+    font-size: 0.6em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    transition: font-size 0.2s;
+    text-shadow: 0 0 5px #000000;
+    color: #ffffff;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    line-height: 1.2em;
+    max-height: 3.6em; /* 3 行高度 */
+}
+
+.actions {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.bookmark.active .actions {
+    display: flex;
+}
+
+.actions a {
+    flex: 1;
+    margin: 0;
+    font-size: 0.67em;
+    color: #00ffcc;
+    text-decoration: none;
+    text-align: center;
+    padding: 7px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.actions .delete {
+    color: #ff3333;
+}
+
+.actions .close {
+    color: #fff;
+}
+
+/* 表单 */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+label {
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border: 2px solid #ff007a;
+    border-radius: 10px;
+    background: var(--input-bg);
+    color: var(--input-text-color);
+    outline: none;
+    transition: border-color 0.3s;
+    font-size: 1em;
+    font-family: 'Orbitron', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input::placeholder, textarea::placeholder, select:invalid {
+    color: var(--placeholder-color);
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #00ffcc;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+#newCategoryInput {
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid #ff007a;
+    border-radius: 10px;
+    background: var(--input-bg);
+    color: var(--input-text-color);
+    outline: none;
+    transition: border-color 0.3s;
+    font-size: 1em;
+    font-family: 'Orbitron', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#newCategoryInput:focus {
+    border-color: #00ffcc;
+}
+
+select {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+select option {
+    background: #1a1a2e;
+    color: #ffffff;
+    text-shadow: none;
+}
+
+[data-theme="light"] select {
+    text-shadow: none;
+}
+
+[data-theme="light"] select option {
+    background: #ffffff;
+    color: #333333;
+}
+
+[data-theme="light"] #newCategoryInput {
+    text-shadow: none;
+}
+
+/* 表单按钮容器 */
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.form-buttons .btn {
+    padding: 10px 30px;
+    font-size: 1em;
+}
+
+/* 错误提示 */
+.error-message {
+    color: #ff3333;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: none;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .error-message {
+    text-shadow: none;
+}
+
+/* 樱花特效 Canvas */
+#sakura {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header-top {
+        gap: 10px;
+    }
+
+    .title-wrapper h1 {
+        font-size: 1.5em;
+    }
+
+    .search-bar {
+        gap: 5px;
+    }
+
+    .btn.search-btn {
+        padding: 8px 10px;
+        font-size: 0.8em;
+    }
+
+    .btn.small {
+        padding: 6px;
+        font-size: 0.8em;
+    }
+
+    .category h2 {
+        font-size: 1.2em;
+    }
+
+    .bookmark {
+        width: 80px;
+        height: 80px;
+    }
+
+    .bookmark-text {
+        padding: 3px;
+        max-width: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2em; /* 名称和备注间距为一行高度 */
+    }
+
+    .name {
+        font-size: 0.6em;
+        font-weight: bold;
+        color: #ffffff;
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        padding-top: 3px;
+        margin: 0;
+        line-height: 1.2em;
+        max-height: 2.4em;
+    }
+
+    .note {
+        font-size: 0.5em;
+        color: #ffffff;
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        margin: 0;
+        line-height: 1.2em;
+        max-height: 3.6em;
+    }
+
+    .actions {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+    }
+
+    .bookmark.active .actions {
+        display: flex;
+    }
+
+    .actions a {
+        flex: 1;
+        margin: 0;
+        font-size: 0.67em;
+        color: #00ffcc;
+        text-decoration: none;
+        text-align: center;
+        padding: 7px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .actions .delete {
+        color: #ff3333;
+    }
+
+    .actions .close {
+        color: #fff;
+    }
+}
