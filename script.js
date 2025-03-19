@@ -19,85 +19,88 @@ navLinks.forEach(link => {
     });
 });
 
-// 拖拽排序（支持跨分类）
+// 修改后的拖拽排序代码
 const containers = document.querySelectorAll('.bookmark-container');
 let draggedItem = null;
 
 containers.forEach(container => {
-    const bookmarks = container.querySelectorAll('.bookmark');
+    container.addEventListener('dragover', e => e.preventDefault());
+    container.addEventListener('dragenter', e => e.preventDefault());
 
-    bookmarks.forEach(bookmark => {
-        bookmark.draggable = true;
-
-        bookmark.addEventListener('dragstart', () => {
-            draggedItem = bookmark;
-            setTimeout(() => bookmark.style.opacity = '0.5', 0);
-        });
-
-        bookmark.addEventListener('dragend', () => {
-            setTimeout(() => {
-                draggedItem.style.opacity = '1';
-                draggedItem = null;
-                saveOrder();
-            }, 0);
-        });
-
-        container.addEventListener('dragover', e => e.preventDefault());
-        container.addEventListener('dragenter', e => e.preventDefault());
-
-        container.addEventListener('drop', function(e) {
-            e.preventDefault();
-            if (draggedItem && draggedItem !== this) {
-                const allItems = [...this.querySelectorAll('.bookmark')];
-                const closestBookmark = getClosestBookmark(e.clientX, e.clientY, allItems);
-                if (closestBookmark) {
-                    const draggedIndex = allItems.indexOf(draggedItem);
-                    const targetIndex = allItems.indexOf(closestBookmark);
-                    if (draggedIndex === -1) {
-                        if (targetIndex === 0) {
-                            this.insertBefore(draggedItem, closestBookmark);
+    container.addEventListener('drop', function(e) {
+        e.preventDefault();
+        if (draggedItem) {
+            const allItems = [...this.querySelectorAll('.bookmark')];
+            const closestBookmark = getClosestBookmark(e.clientX, e.clientY, allItems);
+            
+            if (closestBookmark) {
+                const targetIndex = allItems.indexOf(closestBookmark);
+                if (targetIndex !== -1) {
+                    // 根据鼠标位置决定插入到目标前面还是后面
+                    const rect = closestBookmark.getBoundingClientRect();
+                    const midX = rect.left + rect.width / 2;
+                    
+                    if (e.clientX < midX) {
+                        this.insertBefore(draggedItem, closestBookmark);
+                    } else {
+                        if (closestBookmark.nextElementSibling) {
+                            this.insertBefore(draggedItem, closestBookmark.nextElementSibling);
                         } else {
-                            closestBookmark.after(draggedItem);
+                            this.appendChild(draggedItem);
                         }
                     }
-                } else {
-                    this.appendChild(draggedItem);
                 }
+            } else {
+                // 如果没有找到最近的书签，则追加到容器末尾
+                this.appendChild(draggedItem);
             }
-        });
+            
+            // 保存排序顺序
+            saveOrder();
+        }
+    });
+});
 
-        bookmark.addEventListener('contextmenu', function(e) {
+document.querySelectorAll('.bookmark').forEach(bookmark => {
+    bookmark.draggable = true;
+
+    bookmark.addEventListener('dragstart', () => {
+        draggedItem = bookmark;
+        setTimeout(() => bookmark.style.opacity = '0.5', 0);
+    });
+
+    bookmark.addEventListener('dragend', () => {
+        setTimeout(() => {
+            draggedItem.style.opacity = '1';
+            draggedItem = null;
+        }, 0);
+    });
+
+    bookmark.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.bookmark').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        adjustTextDisplay(this);
+    });
+
+    let touchTimer;
+    bookmark.addEventListener('touchstart', function(e) {
+        touchTimer = setTimeout(() => {
             e.preventDefault();
             document.querySelectorAll('.bookmark').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             adjustTextDisplay(this);
-        });
-
-        let touchTimer;
-        bookmark.addEventListener('touchstart', function(e) {
-            touchTimer = setTimeout(() => {
-                e.preventDefault();
-                document.querySelectorAll('.bookmark').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                adjustTextDisplay(this);
-            }, 500);
-        });
-
-        bookmark.addEventListener('touchend', () => clearTimeout(touchTimer));
-        bookmark.addEventListener('touchmove', () => clearTimeout(touchTimer));
-
-        bookmark.addEventListener('mouseleave', function() {
-            this.classList.remove('active');
-        });
-
-        adjustTextDisplay(bookmark);
+        }, 500);
     });
-});
 
-document.addEventListener('click', function(e) {
-    if (!e.target.closest('.bookmark')) {
-        document.querySelectorAll('.bookmark').forEach(b => b.classList.remove('active'));
-    }
+    bookmark.addEventListener('touchend', () => clearTimeout(touchTimer));
+    bookmark.addEventListener('touchmove', () => clearTimeout(touchTimer));
+
+    bookmark.addEventListener('mouseleave', function() {
+        this.classList.remove('active');
+    });
+
+    adjustTextDisplay(bookmark);
 });
 
 function getClosestBookmark(x, y, bookmarks) {
@@ -118,6 +121,12 @@ function getClosestBookmark(x, y, bookmarks) {
     return closest;
 }
 
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.bookmark')) {
+        document.querySelectorAll('.bookmark').forEach(b => b.classList.remove('active'));
+    }
+});
+
 // 改进的文本显示调整函数
 function adjustTextDisplay(bookmark) {
     const textContainer = bookmark.querySelector('.bookmark-text');
@@ -136,9 +145,9 @@ function adjustTextDisplay(bookmark) {
         textContainer.style.left = '0';
         textContainer.style.display = 'flex';
         textContainer.style.flexDirection = 'column';
-        textContainer.style.alignItems = 'center'; // 居中对齐
+        textContainer.style.alignItems = 'center';
         textContainer.style.boxSizing = 'border-box';
-        textContainer.style.gap = '1.2em'; // 名称和备注间距为一行高度
+        textContainer.style.gap = '1.2em';
     }
     
     if (name) {
@@ -151,7 +160,7 @@ function adjustTextDisplay(bookmark) {
         name.style.textOverflow = 'ellipsis';
         name.style.paddingTop = window.innerWidth <= 600 ? '3px' : '5px';
         name.style.lineHeight = '1.2em';
-        name.style.maxHeight = '2.4em'; // 2 行高度
+        name.style.maxHeight = '2.4em';
         let fontSize = window.innerWidth <= 600 ? 0.6 : 0.73;
         name.style.fontSize = fontSize + 'em';
         while (name.scrollWidth > textContainer.offsetWidth && fontSize > 0.33) {
@@ -169,7 +178,7 @@ function adjustTextDisplay(bookmark) {
         note.style.overflow = 'hidden';
         note.style.textOverflow = 'ellipsis';
         note.style.lineHeight = '1.2em';
-        note.style.maxHeight = '3.6em'; // 3 行高度
+        note.style.maxHeight = '3.6em';
         let fontSize = window.innerWidth <= 600 ? 0.5 : 0.6;
         note.style.fontSize = fontSize + 'em';
         while (note.scrollWidth > textContainer.offsetWidth && fontSize > 0.27) {
