@@ -7,8 +7,7 @@
 **页面展示**
 以下是书签导航的主页截图，展示了分类、书签卡片和樱花特效的视觉效果：
 ![书签导航主页](images/screenshot.png)
-https://raw.githubusercontent.com/iawooo/BookNav/refs/heads/main/images/screenshot.png
-![书签导航主页]([images/screenshot.png](https://raw.githubusercontent.com/iawooo/BookNav/refs/heads/main/images/screenshot.png))
+
 ## 亮点
 
 - **超轻量级**：源代码不到 100KB，占用空间小，加载快。
