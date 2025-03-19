@@ -35,6 +35,60 @@ if (file_exists(CONFIG_FILE) && (!defined('DB_HOST') || !isset($pdo))) {
     }
 }
 
+// 检查并创建 bookmarks 表（第二段代码）
+if (isset($pdo)) {
+    try {
+        // Check if table exists first
+        $tableExists = false;
+        try {
+            $check = $pdo->query("SELECT 1 FROM bookmarks LIMIT 1");
+            $tableExists = true;
+        } catch (PDOException $e) {
+            // Table doesn't exist, which is expected
+        }
+        
+        if (!$tableExists) {
+            // Create the table with explicit SQL syntax compatible with both MySQL and SQLite
+            $sql = "CREATE TABLE IF NOT EXISTS bookmarks (
+                id INTEGER PRIMARY KEY " . (strpos($pdo->getAttribute(PDO::ATTR_DRIVER_NAME), 'mysql') !== false ? "AUTO_INCREMENT" : "AUTOINCREMENT") . ",
+                name VARCHAR(255) NOT NULL,
+                url VARCHAR(255) NOT NULL,
+                category VARCHAR(255),
+                icon VARCHAR(255),
+                note TEXT,
+                position INTEGER DEFAULT 0,
+                category_weight INTEGER DEFAULT 0
+            )";
+            
+            $pdo->exec($sql);
+            
+            // Verify table was created
+            $check = $pdo->query("SELECT 1 FROM bookmarks LIMIT 1");
+            file_put_contents('debug.log', "表创建成功\n", FILE_APPEND);
+        }
+    } catch (PDOException $e) {
+        // Log the specific SQL error
+        file_put_contents('debug.log', "创建 bookmarks 表失败: " . $e->getMessage() . "\n", FILE_APPEND);
+        
+        // Try with a simpler schema as fallback
+        try {
+            $pdo->exec("CREATE TABLE IF NOT EXISTS bookmarks (
+                id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
+                url TEXT NOT NULL,
+                category TEXT,
+                icon TEXT,
+                note TEXT,
+                position INTEGER DEFAULT 0,
+                category_weight INTEGER DEFAULT 0
+            )");
+            file_put_contents('debug.log', "使用备用schema创建表成功\n", FILE_APPEND);
+        } catch (PDOException $e2) {
+            file_put_contents('debug.log', "备用schema也失败: " . $e2->getMessage() . "\n", FILE_APPEND);
+        }
+    }
+}
+
 // CSRF 令牌生成（用于表单验证）
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
