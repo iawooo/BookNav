@@ -54,7 +54,9 @@ if (isset($_POST['order'])) {
 <body>
     <div class="container">
         <header>
+            <!-- 修改后的 header-top -->
             <div class="header-top">
+                <a href="backup.php" class="btn add-btn" style="margin-right: 10px;">导出/入备份</a>
                 <div class="title-wrapper">
                     <h1>书签导航</h1>
                 </div>
@@ -74,8 +76,12 @@ if (isset($_POST['order'])) {
                 <?php endforeach; ?>
             </nav>
         </header>
+        <!-- 显示导入提示 -->
+        <?php if (isset($_GET['success'])): ?>
+            <div class="success-message"><?php echo htmlspecialchars($_GET['success']); ?></div>
+        <?php endif; ?>
         <?php if (isset($_GET['error'])): ?>
-            <p style="color: red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+            <div class="error-message"><?php echo htmlspecialchars($_GET['error']); ?></div>
         <?php endif; ?>
         <?php
         $current_category = null;
