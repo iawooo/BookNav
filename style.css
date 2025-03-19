@@ -42,10 +42,10 @@ body {
     backdrop-filter: blur(5px);
 }
 
-/* 标题和切换主题 */
+/* 修改 header-top 布局 */
 .header-top {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     width: 100%;
@@ -54,10 +54,6 @@ body {
 .title-wrapper {
     flex: 1;
     text-align: center;
-}
-
-.header-top .search-btn {
-    margin-left: auto;
 }
 
 /* 标题 */
@@ -223,7 +219,7 @@ h1 {
     flex-wrap: wrap;
     gap: 15px;
     width: 100%;
-    padding-bottom: 20px; /* 添加底部间距 */
+    padding-bottom: 20px;
 }
 
 .bookmark {
@@ -274,7 +270,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2em; /* 名称和备注间距为一行高度 */
+    gap: 1.2em;
 }
 
 .name {
@@ -294,7 +290,7 @@ h1 {
     text-align: center;
     padding-top: 5px;
     line-height: 1.2em;
-    max-height: 2.4em; /* 2 行高度 */
+    max-height: 2.4em;
 }
 
 .note {
@@ -312,7 +308,7 @@ h1 {
     text-overflow: ellipsis;
     text-align: center;
     line-height: 1.2em;
-    max-height: 3.6em; /* 3 行高度 */
+    max-height: 3.6em;
 }
 
 .actions {
@@ -453,13 +449,25 @@ select option {
     font-size: 1em;
 }
 
-/* 错误提示 */
+/* 错误和成功提示 */
+.success-message {
+    background: rgba(0, 255, 128, 0.2);
+    color: #00ff80;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: block;
+    text-align: center;
+}
+
 .error-message {
+    background: rgba(255, 51, 51, 0.2);
     color: #ff3333;
-    font-size: 0.9em;
-    margin-top: 5px;
-    display: none;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: block;
+    text-align: center;
 }
 
 [data-theme="light"] .error-message {
@@ -483,6 +491,76 @@ select option {
     height: 100%;
     pointer-events: none;
     z-index: -1;
+}
+
+/* 备份功能样式 */
+.backup-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.backup-section {
+    background: var(--bookmark-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px var(--shadow-color);
+    border: 1px solid #00ffcc;
+}
+
+.backup-section h2 {
+    margin-top: 0;
+    color: var(--text-color);
+    border-bottom: 1px solid #00ffcc;
+    padding-bottom: 10px;
+}
+
+.backup-section p {
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.drag-drop-area {
+    border: 2px dashed #00ffcc;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s;
+    color: var(--text-color);
+    background: var(--input-bg);
+    cursor: pointer;
+}
+
+.drag-drop-area.dragover {
+    background: rgba(0, 255, 204, 0.1);
+}
+
+.drag-drop-area .icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.file-input {
+    display: none;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* 响应式设计 */
@@ -531,7 +609,7 @@ select option {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 1.2em; /* 名称和备注间距为一行高度 */
+        gap: 1.2em;
     }
 
     .name {
@@ -605,5 +683,13 @@ select option {
 
     .actions .close {
         color: #fff;
+    }
+
+    .backup-section {
+        padding: 15px;
+    }
+    
+    .drag-drop-area {
+        padding: 20px;
     }
 }
