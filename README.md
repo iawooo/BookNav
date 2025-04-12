@@ -145,3 +145,6 @@ public_html/
 ## 许可证
 
 本项目采用 MIT 许可证，详情请见 [LICENSE](LICENSE) 文件。
+
+## star star star star star
+[star](https://raw.githubusercontent.com/iawooo/StarCharts/refs/heads/main/images/booknav_star_chart.png)
