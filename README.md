@@ -144,4 +144,4 @@ public_html/
 
 ## 许可证
 
-MIT License - 自由使用、修改和分发。
+本项目采用 MIT 许可证，详情请见 [LICENSE](LICENSE) 文件。
